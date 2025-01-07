@@ -11,6 +11,7 @@ const config: ForgeConfig = {
   publishers: [
     {
       name: '@electron-forge/publisher-github',
+      platforms: ['darwin', 'linux', 'win64'],
       config: {
         repository: {
           owner: 'AustinTalbot',
