@@ -29,3 +29,6 @@
 import './index.css';
 
 console.log('👋 This message is being logged by "renderer.ts", included via Vite');
+
+const version = '1.0.0'; // Define the version variable
+console.log(`Current version: ${version}`);

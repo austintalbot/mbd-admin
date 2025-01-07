@@ -17,7 +17,9 @@ const config: ForgeConfig = {
           owner: 'AustinTalbot',
           name: 'mbd-admin'
         },
-        prerelease: true
+        draft: true,
+        prerelease: true,
+        generateReleaseNotes: true
       }
     }
   ],

@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, autoUpdater } from 'electron';
 import path from 'path';
 import started from 'electron-squirrel-startup';
 import { updateElectronApp } from 'update-electron-app';
@@ -8,7 +8,47 @@ updateElectronApp();
 if (started) {
   app.quit();
 }
+const server = 'https://update.electronjs.org'
+const feed = `${server}/austintalbot/mbd-admin/${process.platform}-${process.arch}/${app.getVersion()}`
 
+autoUpdater.setFeedURL({ url: feed })
+
+setInterval(() => {
+  autoUpdater.checkForUpdates()
+}, 10 * 60 * 1000)
+
+const version = app.getVersion();
+console.log(`Current version: ${version}`);
+
+autoUpdater.checkForUpdates();
+
+autoUpdater.on("checking-for-update", () => {
+  console.log("checking-for-update");
+});
+
+autoUpdater.on("update-available", () => {
+  console.log("update-available");
+});
+
+autoUpdater.on("update-not-available", () => {
+  console.log("update-not-available");
+});
+
+autoUpdater.on(
+  "update-downloaded",
+  (event, releaseNotes, releaseName, updateURL) => {
+    console.log("update-downloaded", {
+      event,
+      releaseNotes,
+      releaseName,
+      updateURL,
+    });
+  }
+);
+
+autoUpdater.on("error", (error) => {
+  console.log("error", { error });
+});
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -17,6 +57,8 @@ const createWindow = () => {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
+
+    
   });
 
   // and load the index.html of the app.
