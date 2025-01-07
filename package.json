@@ -22,6 +22,7 @@
     "@electron-forge/plugin-vite": "^7.6.0",
     "@electron-forge/publisher-github": "^7.6.0",
     "@electron/fuses": "^1.8.0",
+    "@types/electron-squirrel-startup": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^8.19.1",
     "@typescript-eslint/parser": "^8.19.1",
     "electron": "33.3.1",
@@ -39,6 +40,11 @@
   "license": "MIT",
   "packageManager": "yarn@4.6.0",
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
+    "electron-squirrel-startup": "^1.0.1",
+    "update-electron-app": "^3.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AustinTalbot/mbd-admin.git"
   }
 }
